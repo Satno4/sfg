@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Alaverdi MT";
+  src: url("fonts/gf-alaverdi-mt.ttf") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nino Mtavruli";
+  src: url("fonts/bpg_nino_mtavruli_normal.otf") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+body,
+html,
+app-root {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: block;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
