@@ -1,2 +1,12 @@
-<router-outlet
-></router-outlet>
+<div
+  *ngIf="appState$ | async as appState"
+  [ngClass]="{
+    bg: true,
+    'bg-a': appState === appStateEnum.MAIN,
+    'bg-b': appState === appStateEnum.EXPLORE,
+    'bg-c': appState === appStateEnum.QUIZ,
+    'bg-d': appState === appStateEnum.ABOUT
+  }"
+>
+  <router-outlet></router-outlet>
+</div>

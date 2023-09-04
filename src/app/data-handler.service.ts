@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import * as d3 from "d3-fetch";
-import { from, map } from "rxjs";
-import { SocialService } from "./interfaces/model";
+import { BehaviorSubject, from, map } from "rxjs";
+import { SocialService, scheme } from "./interfaces/model";
 
 @Injectable({
   providedIn: "root",
@@ -9,7 +9,12 @@ import { SocialService } from "./interfaces/model";
 export class DataHandlerService {
   url =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vSiWiD1kxXugepZ6iJ-QAI2csieusNCbBTcDZhNeOUdMlXtufCu3nmXU9rQTZNIOLnslFsL1aafRnxj/pub?gid=888593843&single=true&output=csv";
-  data!: SocialService;
+  data!: SocialService[];
+  cities$ = new BehaviorSubject<string[]>([]);
+  regions$ = new BehaviorSubject<string[]>([]);
+  categories$ = new BehaviorSubject<string[]>([]);
+  filteredData$ = new BehaviorSubject<SocialService[]>([]);
+  schemeEnum = scheme;
 
   constructor() {
     this.getData();
@@ -44,12 +49,20 @@ export class DataHandlerService {
                 : el["singleUse"] === "FALSE"
                 ? false
                 : null,
-            healthRequirement: el["healthRequirement"] ? el["healthRequirement"].includes(",") ? el["healthRequirement"].split(",").map((el: string) => el.trim()) : [el["healthRequirement"]] : null,
-            familyRequirement: el["familyRequirement"] ? el["familyRequirement"].includes(",")
-              ? el["familyRequirement"]
-                  .split(",")
-                  .map((el: string) => el.trim())
-              : [el["familyRequirement"]] : null,
+            healthRequirement: el["healthRequirement"]
+              ? el["healthRequirement"].includes(",")
+                ? el["healthRequirement"]
+                    .split(",")
+                    .map((el: string) => el.trim())
+                : [el["healthRequirement"]]
+              : null,
+            familyRequirement: el["familyRequirement"]
+              ? el["familyRequirement"].includes(",")
+                ? el["familyRequirement"]
+                    .split(",")
+                    .map((el: string) => el.trim())
+                : [el["familyRequirement"]]
+              : null,
             documentation: el["documentation"].includes(";")
               ? el["documentation"].split(";").map((el: string) => el.trim())
               : [el["documentation"]],
@@ -82,9 +95,45 @@ export class DataHandlerService {
           }))
         )
       )
-      .subscribe((data: SocialService) => {
+      .subscribe((data: SocialService[]) => {
         this.data = data;
-        console.log("Loaded data: ", this.data);
+        const cities = Array.from(
+          new Set(this.data.map(el => el.location).filter(el => el))
+        ) as string[];
+        const regions = Array.from(
+          new Set(
+            this.data
+              .map(el => el.region)
+              .flat()
+              .filter(el => el)
+          )
+        );
+        const categories = Array.from(
+          new Set(
+            this.data
+              .map(el => el.serviceCategory)
+              .flat()
+              .filter(el => el)
+          )
+        );
+        this.cities$.next(cities);
+        this.regions$.next(regions);
+        this.categories$.next(categories);
       });
+  }
+
+  filterData(scheme: scheme, value: string) {
+    let filteredData: SocialService[] = [];
+    if (scheme === this.schemeEnum.CITY) {
+      console.log(value)
+      filteredData = this.data.filter(ss => ss.location === value);
+    } else if (scheme === this.schemeEnum.CATEGORY){
+      filteredData = this.data.filter(ss => ss.serviceCategory.includes(value));
+    } else if (scheme === this.schemeEnum.REGION){
+      filteredData = this.data.filter(ss => ss.region.includes(value));
+    } else if (scheme === this.schemeEnum.KEYWORD){
+      filteredData = this.data.filter(ss => ss.serviceDescription.includes(value));
+    }
+    this.filteredData$.next(filteredData);
   }
 }

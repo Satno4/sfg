@@ -1,6 +1,6 @@
 export interface SocialService {
-  serviceName: string; //
-  serviceDescription: string; //
+  serviceName: string;
+  serviceDescription: string;
   serviceCategory: string[];
   beneficiary: string[];
   provider: string;
@@ -22,4 +22,24 @@ export interface SocialService {
   educationRequirement?: string[];
   diagnoses?: string[];
   index: number;
+}
+
+export enum AppState {
+  MAIN = 'Main',
+  EXPLORE = 'Explore',
+  QUIZ = 'Quiz',
+  ABOUT = 'About',
+}
+
+export enum exploreFilter {
+  CATEGORY = 'Category',
+  CITY = 'City',
+  REGION = 'Region',
+}
+
+export enum scheme {
+  CATEGORY = 'Category',
+  CITY = 'City',
+  REGION = 'Region',
+  KEYWORD = 'Keyword',
 }
