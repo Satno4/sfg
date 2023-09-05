@@ -96,6 +96,7 @@ export class DataHandlerService {
         )
       )
       .subscribe((data: SocialService[]) => {
+        console.log(data)
         this.data = data;
         const cities = Array.from(
           new Set(this.data.map(el => el.location).filter(el => el))
@@ -134,6 +135,22 @@ export class DataHandlerService {
     } else if (scheme === this.schemeEnum.KEYWORD){
       filteredData = this.data.filter(ss => ss.serviceDescription.includes(value));
     }
+    console.log(filteredData)
     this.filteredData$.next(filteredData);
   }
 }
+
+
+// TODO:
+// about component-ში დონორების სურათების ჩამატება;
+// about component-ში ტექსტებში github-ის და კოტეს გამოგზავნილი ყარალას ლინკის ჩამატება;
+// about component-ში ტექსტის გადახარისხება და გალამაზება;
+// explore component-ში სპორტი, კულტურა, განათლება კატეგორიების გაერთიანება;
+// explore component-ში რეგიონის ამოღება; (იქნებ ეგრევე გამოჩენილი იყვნენ კატეგორიები და ქალაქები)
+// final hack-ში არა მუნიციპალური პროგრამების ამოღება;
+// final hack-ში დარჩენილი სახელმწიფო პროვაიდერების პროგრამების ჩამატება;
+// final hack-ში მუნიციპალიტეტების და სხვა სახელმწიფო პროვაიდერების საიტების ლინკების ჩამატება;
+// explore component-ში ქალაქის ქვევით დისქლეიმერი შიდა ქართლისა და კახეთის რეგიონების შესახებ;
+// explore component-ში სიტყვით ძიების ფუნქციონალის ჩამატება;
+// social service component-ის აწყობა pop-up-ად და result component-ში ჩამატება;
+// quizz component-ის აწყობა

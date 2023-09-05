@@ -14,7 +14,7 @@
     >
       <p>სიაში მოიძებნა {{ results.length }} შესაბამისი სოციალური სერვისი.</p>
 
-      <p *ngFor="let ss of results" class="border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in cursor-pointer" (click)="selectSS(ss)">{{ss.serviceName}}</p>
+      <p *ngFor="let ss of results" class="border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in cursor-pointer" (click)="selectSS(ss)">{{ss.benefit}}</p>
     </div>
 
     <ng-template #empty>

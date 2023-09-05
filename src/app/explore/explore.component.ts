@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { StateService } from "../state.service";
 import { AppState, exploreFilter, scheme } from "../interfaces/model";
 import { DataHandlerService } from "../data-handler.service";
-import { map } from "rxjs";
+import { map, tap } from "rxjs";
 import { Router } from "@angular/router";
 
 @Component({
@@ -22,7 +22,7 @@ export class ExploreComponent implements OnInit {
     map(arr => arr.sort((a, b) => a.length - b.length)),
     map(arr => {
       return arr.map(el => ({
-        name: el,
+        name: el !== "ჯანდაცვა" && el !== "მატერიალური დახმარება" && el !== "სოციალური კონსულტაცია" ? "სპორტი/კულტურა/განათლება" : el,
         icon:
           el === "განათლება"
             ? "education"
@@ -38,7 +38,8 @@ export class ExploreComponent implements OnInit {
             ? "community"
             : null,
       }));
-    })
+    }),
+    tap(console.log)
   );
   categoryEnum = exploreFilter;
   chosenCategory: exploreFilter | null = null;
@@ -96,6 +97,7 @@ export class ExploreComponent implements OnInit {
     } else if (this.searchTerm) {
       this.dataHandlerService.filterData(scheme.KEYWORD, this.searchTerm);
     }
+
     this.router.navigate(["../results"]);
   }
 }
