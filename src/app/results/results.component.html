@@ -2,7 +2,7 @@
   class="geo-capital social-bg w-full h-full text-center py-20 px-4 flex flex-col gap-8"
 >
   <h1
-    class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
+    class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white p-4 mx-auto"
   >
     ძებნის შედეგი
   </h1>
@@ -36,4 +36,5 @@
       მთავარი გვერდი
     </button>
 
+    <app-social-service *ngIf="socialService" (socialServiceRemoved)="unselectSS()" [socialService]="socialService"></app-social-service>
 </div>

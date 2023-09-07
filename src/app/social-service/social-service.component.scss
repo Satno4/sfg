@@ -1,0 +1,29 @@
+.enabled {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.enabled:hover {
+  background-color: white;
+  color: #2a8d5c;
+  box-shadow: 0px 0px 8px #2a8d5c;
+  transition: background-color 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+.fira-text {
+  font-family: "FiraGO";
+  font-weight: 400;
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}

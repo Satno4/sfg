@@ -1,0 +1,85 @@
+<div
+  class="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-30 flex justify-center align-center"
+>
+  <div
+    class="my-12 overflow-y-scroll w-4/5 lg:w-3/5 rounded-3xl bg-white p-4 relative"
+  >
+    <button
+      mat-icon-button
+      (click)="unselectSS()"
+      class="!absolute top-o right-4 enabled"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <h1 class="text-center text-2xl mt-4 w-4/5 mx-auto">
+      {{ socialService?.serviceName }}
+    </h1>
+
+    <p class="fira-text mt-2 text-left">
+      <b>სერვისის მოკლე აღწერა: </b>{{ socialService?.benefit }}
+    </p>
+    <p class="fira-text mt-2 text-left">
+      <b>კატეგორია: </b>{{ socialService?.serviceCategory }}
+    </p>
+    <p class="fira-text mt-2 text-left">
+      <b>ბენეფიციარი: </b
+      ><span *ngIf="socialService?.ageRestriction"
+        >{{ socialService?.ageRestriction?.min }}-დან
+        {{ socialService?.ageRestriction?.max }} წლამდე</span
+      >
+      {{ socialService?.beneficiary }}
+    </p>
+    <p class="fira-text mt-2 text-left">
+      <b>ლოკაცია: </b>{{ socialService?.location }}, {{ socialService?.region }}
+    </p>
+    <p class="fira-text mt-2 text-left">
+      <b>მომწოდებელი: </b>
+      <a [href]="socialService?.link" class="text-[#2A8D5C]" target="_blank">{{
+        socialService?.provider
+      }}</a>
+    </p>
+    <div class="fira-text mt-2 text-left">
+      <b>მომწოდებლის საკონტაქტო ინფორმაცია: </b>
+      <ol>
+        <li *ngIf="socialService?.phone">
+          <mat-icon class="relative top-2">phone</mat-icon>
+          {{ socialService?.phone }}
+        </li>
+        <li *ngIf="socialService?.address">
+          <mat-icon class="relative top-2">location_on</mat-icon>
+          {{ socialService?.address }}
+        </li>
+        <li *ngIf="socialService?.email">
+          <mat-icon class="relative top-2">mail_outline</mat-icon>
+          {{ socialService?.email }}
+        </li>
+      </ol>
+    </div>
+
+    <div class="fira-text mt-2 text-left">
+      <b>სერვისის მისაღებად წარსადგენი დოკუმენტაცია: </b>
+
+      <ol>
+        <li *ngFor="let doc of socialService?.documentation">{{ doc }};</li>
+      </ol>
+    </div>
+
+    <p class="fira-text mt-2 text-left">
+      <b>სერვისის სრული აღწერა: </b>{{ socialService?.serviceDescription }}
+    </p>
+
+    <p class="fira-text mt-2 text-left">
+      <b>
+        აღნიშნულ პროგრამებზე კონსულტაციის მისაღებად, შეავსეთ
+        <a
+          href="https://forms.gle/P426GwL3ALJ4APXQ8"
+          target="_blank"
+          class="text-[#2A8D5C]"
+          >ფორმა</a
+        >
+        და დაელოდეთ ზარს
+      </b>
+    </p>
+  </div>
+</div>

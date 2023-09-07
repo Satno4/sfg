@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { StateService } from "../state.service";
 import { AppState, exploreFilter, scheme } from "../interfaces/model";
 import { DataHandlerService } from "../data-handler.service";
-import { map, tap } from "rxjs";
+import { filter, map, tap } from "rxjs";
 import { Router } from "@angular/router";
 
 @Component({
@@ -13,33 +13,29 @@ import { Router } from "@angular/router";
 })
 export class ExploreComponent implements OnInit {
   cities$ = this.dataHandlerService.cities$.pipe(
+    filter(arr => arr.length > 0),
     map(arr => arr.sort((a, b) => a.length - b.length))
   );
-  regions$ = this.dataHandlerService.regions$.pipe(
-    map(arr => arr.sort((a, b) => a.length - b.length))
-  );
+  // regions$ = this.dataHandlerService.regions$.pipe(
+  //   map(arr => arr.sort((a, b) => a.length - b.length))
+  // );
   categories$ = this.dataHandlerService.categories$.pipe(
-    map(arr => arr.sort((a, b) => a.length - b.length)),
-    map(arr => {
-      return arr.map(el => ({
-        name: el !== "ჯანდაცვა" && el !== "მატერიალური დახმარება" && el !== "სოციალური კონსულტაცია" ? "სპორტი/კულტურა/განათლება" : el,
+    filter(arr => arr.length > 0),
+    map(arr =>
+      arr.map((el: any) => ({
+        name: el,
         icon:
-          el === "განათლება"
+          el === "განათლება | კულტურა | სპორტი"
             ? "education"
             : el === "ჯანდაცვა"
             ? "health"
-            : el === "სპორტი"
-            ? "sports"
-            : el === "კულტურა"
-            ? "culture"
             : el === "მატერიალური დახმარება"
             ? "currency"
             : el === "სოციალური კონსულტაცია"
             ? "community"
             : null,
-      }));
-    }),
-    tap(console.log)
+      }))
+    )
   );
   categoryEnum = exploreFilter;
   chosenCategory: exploreFilter | null = null;

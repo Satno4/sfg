@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from '../data-handler.service';
-import { SocialService } from '../interfaces/model';
+import { SocialService, scheme } from '../interfaces/model';
 
 @Component({
   selector: 'app-results',
@@ -10,13 +10,21 @@ import { SocialService } from '../interfaces/model';
 export class ResultsComponent implements OnInit {
 
   results$ = this.dataHandlerService.filteredData$;
-  constructor(private dataHandlerService: DataHandlerService) { }
+  socialService: SocialService | null = null;
+  constructor(private dataHandlerService: DataHandlerService) {
+    // this.dataHandlerService.filterData(scheme.CITY, 'სიღნაღი');
+
+   }
 
   ngOnInit(): void {
   }
 
   selectSS(ss: SocialService){
-    console.log(ss)
+   this.socialService = ss;
+   console.log(ss)
+  }
 
+  unselectSS(){
+    this.socialService = null;
   }
 }

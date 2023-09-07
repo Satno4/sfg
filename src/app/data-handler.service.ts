@@ -92,6 +92,7 @@ export class DataHandlerService {
                 : [el["diagnoses"]]
               : null,
             index: i,
+            link: el["link"],
           }))
         )
       )
@@ -120,6 +121,7 @@ export class DataHandlerService {
         this.cities$.next(cities);
         this.regions$.next(regions);
         this.categories$.next(categories);
+        this.filterData(scheme.CITY, cities[0]);
       });
   }
 
@@ -141,16 +143,3 @@ export class DataHandlerService {
 }
 
 
-// TODO:
-// about component-ში დონორების სურათების ჩამატება;
-// about component-ში ტექსტებში github-ის და კოტეს გამოგზავნილი ყარალას ლინკის ჩამატება;
-// about component-ში ტექსტის გადახარისხება და გალამაზება;
-// explore component-ში სპორტი, კულტურა, განათლება კატეგორიების გაერთიანება;
-// explore component-ში რეგიონის ამოღება; (იქნებ ეგრევე გამოჩენილი იყვნენ კატეგორიები და ქალაქები)
-// final hack-ში არა მუნიციპალური პროგრამების ამოღება;
-// final hack-ში დარჩენილი სახელმწიფო პროვაიდერების პროგრამების ჩამატება;
-// final hack-ში მუნიციპალიტეტების და სხვა სახელმწიფო პროვაიდერების საიტების ლინკების ჩამატება;
-// explore component-ში ქალაქის ქვევით დისქლეიმერი შიდა ქართლისა და კახეთის რეგიონების შესახებ;
-// explore component-ში სიტყვით ძიების ფუნქციონალის ჩამატება;
-// social service component-ის აწყობა pop-up-ად და result component-ში ჩამატება;
-// quizz component-ის აწყობა

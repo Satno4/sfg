@@ -22,6 +22,7 @@ export interface SocialService {
   educationRequirement?: string[];
   diagnoses?: string[];
   index: number;
+  link?:string;
 }
 
 export enum AppState {

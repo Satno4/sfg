@@ -1,43 +1,38 @@
 <div
-  class="geo-capital social-bg w-full h-full text-center pt-20 px-4 flex flex-col gap-8"
+  class="geo-capital social-bg w-full h-full text-center pt-20 px-4 flex flex-col gap-6"
 >
-  <button
-    class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto enabled"
-    (click)="chooseCategory(categoryEnum.CATEGORY)"
+
+  <ng-container *ngIf="categories$ | async as categories">
+      <h2
+    class="w-4/5 md:w-3/5  lg:w-2/5  text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
   >
     კატეგორიები
-  </button>
-  <ng-container
-    *ngIf="
-      chosenCategory === categoryEnum.CATEGORY &&
-      (categories$ | async) as categories
-    "
-  >
+  </h2>
     <div
-      class="fira-text w-4/5 md:w-3/5 lg:w-2/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto grid grid-cols-2 sm:grid-cols-3 gap-4"
+      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto grid grid-cols-2 md:grid-cols-4 gap-4"
     >
       <span
         *ngFor="let category of categories"
-        class="flex flex-col text-center items-center justify-center"
+        class="flex flex-col text-center items-center justify-start align-center"
       >
         <button
           mat-fab
           (click)="categoryClicked(category.name)"
           [ngClass]="{
-            '!text-[#2a8d5c] enabled !bg-white hover:text-white hover:bg-[#2a8d5c]': true,
+            '!text-[#2a8d5c] enabled !bg-white hover:text-white hover:bg-[#2a8d5c] ': true,
             selected: chosenSocialCategory === category.name
           }"
         >
           <mat-icon svgIcon="icons:{{ category.icon }}"></mat-icon>
         </button>
-        <h3>
+        <h3 class="mt-4">
           {{ category.name }}
         </h3>
       </span>
     </div>
   </ng-container>
 
-  <button
+  <!--  <button
     class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto enabled"
     (click)="chooseCategory(categoryEnum.REGION)"
   >
@@ -62,19 +57,17 @@
         {{ region }}
       </button>
     </div>
-  </ng-container>
+  </ng-container> -->
 
-  <button
-    class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto enabled"
-    (click)="chooseCategory(categoryEnum.CITY)"
+
+  <ng-container *ngIf="cities$ | async as cities">
+     <h2
+    class="w-4/5 md:w-3/5 lg:w-2/5  text-3xl rounded-3xl bg-white px-4 py-4 mx-auto "
   >
     ქალაქი
-  </button>
-  <ng-container
-    *ngIf="chosenCategory === categoryEnum.CITY && (cities$ | async) as cities"
-  >
+  </h2>
     <div
-      class="fira-text w-4/5 md:w-3/5 lg:w-2/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
+      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
     >
       <button
         *ngFor="let city of cities"
@@ -86,6 +79,8 @@
       >
         {{ city }}
       </button>
+
+      <span class="bg-black text-white bg-opacity-60 rounded-3xl p-4">ამ პროექტის ფარგლებში ძირითადად მოწოდებულია შიდა ქართლსა და კახეთში ხელმისაწვდომი სოციალური სერვისები </span>
     </div>
   </ng-container>
 
@@ -100,24 +95,24 @@
       !chosenCity && !chosenRegion && !chosenSocialCategory;
       else enabledButton
     "
-    class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 my-4 mx-auto disabled:opacity-75"
-    matTooltip="აირჩიეთ ქალაქი, რეგიონი ან კატეგორია ან შეიყვანეთ საძიებო სიტყვა"
+    class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto disabled:opacity-75"
+    matTooltip="აირჩიეთ რეგიონი ან კატეგორია ან შეიყვანეთ საძიებო სიტყვა"
   >
     მოძებნა
   </button>
 
   <ng-template #enabledButton>
     <button
-      class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 my-4 mx-auto"
+      class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
       (click)="searchClicked()"
     >
       მოძებნა
     </button>
   </ng-template>
   <button
-      class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 my-4 mx-auto"
-      routerLink="../home"
-    >
-      მთავარი გვერდი
-    </button>
+    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
+    routerLink="../home"
+  >
+    მთავარი გვერდი
+  </button>
 </div>
