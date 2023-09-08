@@ -202,33 +202,28 @@ export class DataHandlerService {
   }
 
   filterQuizzData(quizAnswers: quizAnswers) {
-    console.log(quizAnswers)
     let filteredData: SocialService[] = [];
     filteredData = this.data.filter(el =>
       el.location ? quizAnswers.city.includes(el.location) : true
     );
     filteredData = filteredData.filter(
       ss =>
-        (quizAnswers.status &&
-          ss.individualRequirement?.some(
-            el => quizAnswers.status && quizAnswers.status.includes(el)
-          ) === true) ||
-        (quizAnswers.family &&
-          ss.familyRequirement?.some(
-            el => quizAnswers.family && quizAnswers.family.includes(el)
-          ) === true) ||
-        (quizAnswers.parents &&
-          ss.parentRequirement?.some(
-            el => quizAnswers.parents && quizAnswers.parents.includes(el)
-          ) === true) ||
-        (quizAnswers.health &&
-          ss.healthRequirement?.some(
-            el => quizAnswers.health && quizAnswers.health.includes(el)
-          ) === true) ||
-        !ss.individualRequirement ||
-        !ss.familyRequirement ||
-        !ss.parentRequirement ||
-        !ss.healthRequirement
+        ss.individualRequirement?.some(
+          el => quizAnswers.status && quizAnswers.status.includes(el)
+        ) === true ||
+        ss.familyRequirement?.some(
+          el => quizAnswers.family && quizAnswers.family.includes(el)
+        ) === true ||
+        ss.parentRequirement?.some(
+          el => quizAnswers.parents && quizAnswers.parents.includes(el)
+        ) === true ||
+        ss.healthRequirement?.some(
+          el => quizAnswers.health && quizAnswers.health.includes(el)
+        ) === true ||
+        (!ss.individualRequirement && !quizAnswers.status) ||
+        (!ss.familyRequirement && !quizAnswers.family) ||
+        (!ss.parentRequirement && quizAnswers.parents) ||
+        (!ss.healthRequirement && !quizAnswers.health)
     );
     this.filteredData$.next(filteredData);
   }
