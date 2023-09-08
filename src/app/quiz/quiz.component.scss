@@ -1,0 +1,40 @@
+.geo-capital {
+  font-family: "Gugeshashvili";
+}
+
+.social-bg {
+  background-image: url("../../assets/svgs/svg_results.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.fira-text {
+  font-family: "FiraGO";
+  font-weight: 400;
+}
+
+
+button.enabled {
+  transition: background-color 0.3s ease-in-out;
+}
+
+button.enabled:hover {
+  background-color: white;
+  color: #2a8d5c;
+  box-shadow: 0px 0px 8px #2a8d5c;
+  transition: background-color 0.3s ease-in-out;
+  opacity: 0.8;
+}
+button.enabled-pink:hover {
+  background-color: white;
+  color: #FF8573;
+  box-shadow: 0px 0px 8px #FF8573;
+  transition: background-color 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+.selected {
+  color: white !important;
+  background-color: #2a8d5c !important;
+  transition: background-color 0.3s ease-in-out;
+}

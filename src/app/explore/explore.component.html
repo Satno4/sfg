@@ -1,13 +1,38 @@
 <div
   class="geo-capital social-bg w-full h-full text-center pt-20 px-4 flex flex-col gap-6"
 >
+  <ng-container *ngIf="cities$ | async as cities">
+    <h2
+      class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
+    >
+      ქალაქი
+    </h2>
+    <div
+      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
+    >
+      <button
+        *ngFor="let city of cities"
+        (click)="cityClicked(city)"
+        [ngClass]="{
+          'border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in': true,
+          selected: chosenCity === city
+        }"
+      >
+        {{ city }}
+      </button>
 
+      <span class="bg-black text-white bg-opacity-60 rounded-3xl p-4"
+        >ამ პროექტის ფარგლებში ძირითადად მოწოდებულია შიდა ქართლსა და კახეთში
+        ხელმისაწვდომი სოციალური სერვისები
+      </span>
+    </div>
+  </ng-container>
   <ng-container *ngIf="categories$ | async as categories">
-      <h2
-    class="w-4/5 md:w-3/5  lg:w-2/5  text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
-  >
-    კატეგორიები
-  </h2>
+    <h2
+      class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
+    >
+      კატეგორია
+    </h2>
     <div
       class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto grid grid-cols-2 md:grid-cols-4 gap-4"
     >
@@ -32,85 +57,36 @@
     </div>
   </ng-container>
 
-  <!--  <button
-    class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto enabled"
-    (click)="chooseCategory(categoryEnum.REGION)"
-  >
-    რეგიონი
-  </button>
-  <ng-container
-    *ngIf="
-      chosenCategory === categoryEnum.REGION && (regions$ | async) as regions
-    "
-  >
-    <div
-      class="fira-text w-4/5 md:w-3/5 lg:w-2/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
-    >
-      <button
-        *ngFor="let region of regions"
-        (click)="regionClicked(region)"
-        [ngClass]="{
-          'border-solid border-2 border-black px-4 rounded-2xl py-1 ease-in enabled': true,
-          selected: chosenRegion === region
-        }"
-      >
-        {{ region }}
-      </button>
-    </div>
-  </ng-container> -->
-
-
-  <ng-container *ngIf="cities$ | async as cities">
-     <h2
-    class="w-4/5 md:w-3/5 lg:w-2/5  text-3xl rounded-3xl bg-white px-4 py-4 mx-auto "
-  >
-    ქალაქი
-  </h2>
-    <div
-      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
-    >
-      <button
-        *ngFor="let city of cities"
-        (click)="cityClicked(city)"
-        [ngClass]="{
-          'border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in': true,
-          selected: chosenCity === city
-        }"
-      >
-        {{ city }}
-      </button>
-
-      <span class="bg-black text-white bg-opacity-60 rounded-3xl p-4">ამ პროექტის ფარგლებში ძირითადად მოწოდებულია შიდა ქართლსა და კახეთში ხელმისაწვდომი სოციალური სერვისები </span>
-    </div>
-  </ng-container>
-
   <input
     type="text"
     class="fira-text w-4/5 md:w-3/5 lg:w-2/5 text-xl rounded-3xl bg-white px-12 py-4 mx-auto"
-    placeholder="საძიებო სიტყვა.."
+    placeholder="5 სიმბოლო.."
+    [attr.disabled]="chosenSocialCategory || chosenCity"
+    [formControl]="searchControl"
   />
 
   <button
+    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
+    (click)="searchClicked()"
     *ngIf="
-      !chosenCity && !chosenRegion && !chosenSocialCategory;
-      else enabledButton
+      (searchControl.value && searchControl.value.length > 4) ||
+        (chosenSocialCategory && chosenCity);
+      else disabledButton
     "
-    class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto disabled:opacity-75"
-    matTooltip="აირჩიეთ რეგიონი ან კატეგორია ან შეიყვანეთ საძიებო სიტყვა"
   >
     მოძებნა
   </button>
 
-  <ng-template #enabledButton>
+  <ng-template #disabledButton>
     <button
-      class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
-      (click)="searchClicked()"
+      class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto disabled:opacity-75"
+      matTooltip="აირჩიეთ რეგიონი და კატეგორია ან შეიყვანეთ მინიმუმ 4 ასოიანი საძიებო სიტყვა"
     >
       მოძებნა
     </button>
   </ng-template>
   <button
-    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
+    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto mb-8"
     routerLink="../home"
   >
     მთავარი გვერდი

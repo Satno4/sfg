@@ -21,7 +21,6 @@ export class ResultsComponent implements OnInit {
 
   selectSS(ss: SocialService){
    this.socialService = ss;
-   console.log(ss)
   }
 
   unselectSS(){

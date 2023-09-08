@@ -23,6 +23,8 @@ export interface SocialService {
   diagnoses?: string[];
   index: number;
   link?:string;
+  parentRequirement?: string[];
+  individualRequirement?: string[];
 }
 
 export enum AppState {
@@ -43,4 +45,21 @@ export enum scheme {
   CITY = 'City',
   REGION = 'Region',
   KEYWORD = 'Keyword',
+  CATEGORY_CITY = 'Category & City',
+}
+
+export enum quizState {
+  HEALTH = 'Health',
+  PARENTS = 'Parents',
+  STATUS = 'Status',
+  FAMILY = 'Family',
+  CITY = 'City',
+}
+
+export interface quizAnswers {
+  health?: string[];
+  parents?: string[];
+  status?: string[];
+  family?: string[];
+  city: string[];
 }

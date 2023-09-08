@@ -12,6 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";import { MatTooltipModule } from "@angular/material/tooltip";
 import { ResultsComponent } from './results/results.component';
 import { SocialServiceComponent } from './social-service/social-service.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,13 @@ import { SocialServiceComponent } from './social-service/social-service.componen
     AboutComponent,
     ResultsComponent,
     SocialServiceComponent,
+    QuizComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -1,24 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
-import { StateService } from "../state.service";
-import { AppState, exploreFilter, scheme } from "../interfaces/model";
+import { exploreFilter, scheme } from "../interfaces/model";
 import { DataHandlerService } from "../data-handler.service";
-import { filter, map, tap } from "rxjs";
+import { filter, map } from "rxjs";
 import { Router } from "@angular/router";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-explore",
   templateUrl: "./explore.component.html",
   styleUrls: ["./explore.component.scss"],
 })
-export class ExploreComponent implements OnInit {
+export class ExploreComponent {
   cities$ = this.dataHandlerService.cities$.pipe(
     filter(arr => arr.length > 0),
     map(arr => arr.sort((a, b) => a.length - b.length))
   );
-  // regions$ = this.dataHandlerService.regions$.pipe(
-  //   map(arr => arr.sort((a, b) => a.length - b.length))
-  // );
   categories$ = this.dataHandlerService.categories$.pipe(
     filter(arr => arr.length > 0),
     map(arr =>
@@ -38,62 +35,38 @@ export class ExploreComponent implements OnInit {
     )
   );
   categoryEnum = exploreFilter;
-  chosenCategory: exploreFilter | null = null;
-  searchTerm = "";
+  searchControl = new FormControl("", Validators.minLength(4));
   chosenCity: string | null = null;
   chosenRegion: string | null = null;
   chosenSocialCategory: string | null = null;
   constructor(
-    private stateService: StateService,
     private dataHandlerService: DataHandlerService,
     private router: Router
-  ) {
-    this.stateService.changeAppState(AppState.EXPLORE);
-  }
-
-  ngOnInit(): void {}
-
-  chooseCategory(category: exploreFilter) {
-    this.chosenCategory === category
-      ? (this.chosenCategory = null)
-      : (this.chosenCategory = category);
-  }
+  ) {}
 
   categoryClicked(category: string) {
     this.chosenSocialCategory === category
       ? (this.chosenSocialCategory = null)
       : (this.chosenSocialCategory = category);
-    this.chosenCity = null;
-    this.chosenRegion = null;
+    this.searchControl.setValue("");
   }
   cityClicked(city: string) {
     this.chosenCity === city
       ? (this.chosenCity = null)
       : (this.chosenCity = city);
-    this.chosenSocialCategory = null;
-    this.chosenRegion = null;
-  }
-  regionClicked(region: string) {
-    this.chosenRegion === region
-      ? (this.chosenRegion = null)
-      : (this.chosenRegion = region);
-    this.chosenCity = null;
-    this.chosenSocialCategory = null;
+    this.searchControl.setValue("");
   }
   searchClicked() {
-    if (this.chosenCity) {
-      this.dataHandlerService.filterData(scheme.CITY, this.chosenCity);
-    } else if (this.chosenSocialCategory) {
-      this.dataHandlerService.filterData(
-        scheme.CATEGORY,
-        this.chosenSocialCategory
-      );
-    } else if (this.chosenRegion) {
-      this.dataHandlerService.filterData(scheme.REGION, this.chosenRegion);
-    } else if (this.searchTerm) {
-      this.dataHandlerService.filterData(scheme.KEYWORD, this.searchTerm);
+    if (this.chosenSocialCategory && this.chosenCity) {
+      this.dataHandlerService.filterData(scheme.CATEGORY_CITY, [
+        this.chosenSocialCategory,
+        this.chosenCity,
+      ]);
+    } else if (this.searchControl.valid) {
+      this.dataHandlerService.filterData(scheme.KEYWORD, [
+        this.searchControl.value as string,
+      ]);
     }
-
     this.router.navigate(["../results"]);
   }
 }
