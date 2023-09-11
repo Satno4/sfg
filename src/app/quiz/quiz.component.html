@@ -1,17 +1,19 @@
 <div
   class="geo-capital social-bg w-full h-full text-center pt-20 px-4 flex flex-col gap-6"
 >
-<ng-container *ngIf="quizState===quizStateEnum.CITY">
-  <ng-container *ngIf="cities$ | async as cities">
+  <ng-container *ngIf="quizState === quizStateEnum.CITY">
+    <ng-container *ngIf="cities$ | async as cities">
       <h2
         class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
       >
         მუნიციპალიტეტი
       </h2>
 
-        <div class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
-          >აირჩიეთ ერთი ან მეტი მუნიციპალიტეტი
-        </div>
+      <div
+        class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
+      >
+        აირჩიეთ ერთი ან მეტი მუნიციპალიტეტი
+      </div>
       <div
         class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
       >
@@ -27,19 +29,21 @@
         </button>
       </div>
     </ng-container>
-</ng-container>
+  </ng-container>
 
-<ng-container *ngIf="quizState===quizStateEnum.STATUS">
-  <ng-container *ngIf="statuses$ | async as statuses">
+  <ng-container *ngIf="quizState === quizStateEnum.STATUS">
+    <ng-container *ngIf="statuses$ | async as statuses">
       <h2
         class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-       ბენეფიციარის სტატუსი
+        ბენეფიციარის სტატუსი
       </h2>
 
-        <div class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
-          >მიუთითეთ პოტენციური ბენეფიციარის აღმწერი ერთი ან მეტი სტატუსი
-        </div>
+      <div
+        class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
+      >
+        მიუთითეთ პოტენციური ბენეფიციარის აღმწერი ერთი ან მეტი სტატუსი
+      </div>
       <div
         class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
       >
@@ -55,19 +59,21 @@
         </button>
       </div>
     </ng-container>
-</ng-container>
+  </ng-container>
 
-<ng-container *ngIf="quizState===quizStateEnum.FAMILY">
-  <ng-container *ngIf="familyRequirements$ | async as familyRequirements">
+  <ng-container *ngIf="quizState === quizStateEnum.FAMILY">
+    <ng-container *ngIf="familyRequirements$ | async as familyRequirements">
       <h2
         class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-      ბენეფიციარის ოჯახის სტატუსი
+        ბენეფიციარის ოჯახის სტატუსი
       </h2>
 
-        <div class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
-          >მიუთითეთ პოტენციური ბენეფიციარის ოჯახის აღმწერი ერთი ან მეტი სტატუსი
-        </div>
+      <div
+        class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
+      >
+        მიუთითეთ პოტენციური ბენეფიციარის ოჯახის აღმწერი ერთი ან მეტი სტატუსი
+      </div>
       <div
         class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
       >
@@ -83,19 +89,21 @@
         </button>
       </div>
     </ng-container>
-</ng-container>
+  </ng-container>
 
-<ng-container *ngIf="quizState===quizStateEnum.PARENTS">
-  <ng-container *ngIf="parentRequirements$ | async as parentRequirements">
+  <ng-container *ngIf="quizState === quizStateEnum.PARENTS">
+    <ng-container *ngIf="parentRequirements$ | async as parentRequirements">
       <h2
         class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-      ბენეფიციარის მშობლის სტატუსი
+        ბენეფიციარის მშობლის სტატუსი
       </h2>
 
-        <div class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
-          >მიუთითეთ პოტენციური ბენეფიციარის მშობლის აღმწერი ერთი ან მეტი სტატუსი
-        </div>
+      <div
+        class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
+      >
+        მიუთითეთ პოტენციური ბენეფიციარის მშობლის აღმწერი ერთი ან მეტი სტატუსი
+      </div>
       <div
         class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
       >
@@ -111,19 +119,22 @@
         </button>
       </div>
     </ng-container>
-</ng-container>
+  </ng-container>
 
-<ng-container *ngIf="quizState===quizStateEnum.HEALTH">
-  <ng-container *ngIf="healthRequirements$ | async as healthRequirements">
+  <ng-container *ngIf="quizState === quizStateEnum.HEALTH">
+    <ng-container *ngIf="healthRequirements$ | async as healthRequirements">
       <h2
         class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-      ბენეფიციარის ჯანმრთელობის მდგომარეობა
+        ბენეფიციარის ჯანმრთელობის მდგომარეობა
       </h2>
 
-        <div class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
-          >მიუთითეთ პოტენციური ბენეფიციარის ჯანმრთელობის მდგომარეობის აღმწერი ერთი ან მეტი სტატუსი
-        </div>
+      <div
+        class="w-4/5 md:w-3/5 lg:w-2/5 bg-black text-white bg-opacity-60 rounded-3xl p-4 mx-auto"
+      >
+        მიუთითეთ პოტენციური ბენეფიციარის ჯანმრთელობის მდგომარეობის აღმწერი ერთი
+        ან მეტი სტატუსი
+      </div>
       <div
         class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
       >
@@ -139,7 +150,7 @@
         </button>
       </div>
     </ng-container>
-</ng-container>
+  </ng-container>
 
   <div class="w-4/5 md:w-3/5 lg:w-2/5 mx-auto flex justify-between">
     <button
@@ -158,37 +169,39 @@
     </ng-template>
 
     <button
-      *ngIf="
-        nextButtonEnabled;
-        else disabledNextButton
-      "
+      *ngIf="nextButtonEnabled && !resultsButtonEnabled"
       class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white bg-opacity-80 w-9/12"
       (click)="next()"
     >
       შემდეგი
     </button>
-    <ng-template #disabledNextButton>
-      <button
-        class="bg-black bg-opacity-80 rounded-3xl text-3xl py-4 px-8 text-white bg-opacity-80 w-9/12 cursor-default"
-      >
-        შემდეგი
-      </button>
-    </ng-template>
-  </div>
+
     <button
-      *ngIf="resultsButtonEnabled; else disabledResultsButton"
-      class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
+      *ngIf="
+        !nextButtonEnabled &&
+        !resultsButtonEnabled &&
+        quizState !== quizStateEnum.HEALTH
+      "
+      class="bg-black bg-opacity-80 rounded-3xl text-3xl py-4 px-8 text-white bg-opacity-80 w-9/12 cursor-default"
+    >
+      შემდეგი
+    </button>
+    <button
+      *ngIf="resultsButtonEnabled && !nextButtonEnabled"
+      class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white bg-opacity-80 w-9/12"
       (click)="resultsClicked()"
     >
       შედეგები
     </button>
-    <ng-template #disabledResultsButton>
-      <button
-        class="bg-black cursor-default rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
-      >
-        შედეგები
-      </button>
-    </ng-template>
+
+    <button
+      *ngIf="!resultsButtonEnabled && quizState === quizStateEnum.HEALTH"
+      class="bg-black bg-opacity-80 rounded-3xl text-3xl py-4 px-8 text-white bg-opacity-80 w-9/12 cursor-default"
+    >
+      შედეგები
+    </button>
+  </div>
+
   <button
     class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto mb-8"
     routerLink="../home"

@@ -2,7 +2,7 @@
   background-repeat: repeat;
   display: block;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: visible;
   &-a {
@@ -17,4 +17,17 @@
   &-d {
     background-image: url("../assets/svgs/background-d.svg");
   }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }

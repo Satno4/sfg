@@ -1,8 +1,8 @@
 <div
-  class="absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-30 flex justify-center align-center"
+  class="absolute w-full h-full top-0 left-0 bg-black bg-opacity-30 flex justify-center align-center overflow-hidden"
 >
   <div
-    class="my-12 overflow-y-scroll w-4/5 lg:w-3/5 rounded-3xl bg-white p-4 relative"
+    class="my-12 overflow-y-scroll w-[80vw] lg:w-[60vw] rounded-3xl bg-white p-4 relative"
   >
     <button
       mat-icon-button
@@ -12,7 +12,7 @@
       <mat-icon>close</mat-icon>
     </button>
 
-    <h1 class="text-center text-2xl mt-4 w-4/5 mx-auto">
+    <h1 class="text-center text-xl md:text-2xl mt-4 w-4/5 mx-auto">
       {{ socialService?.serviceName }}
     </h1>
 
