@@ -1,25 +1,29 @@
 <div
   class="geo-capital social-bg w-full h-full text-center py-20 px-4 flex flex-col gap-8"
 >
-  <h1
-    class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white p-4 mx-auto"
-  >
+  <h1 class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white p-4 mx-auto">
     ძებნის შედეგი
   </h1>
 
   <ng-container *ngIf="results$ | async as results">
     <div
       *ngIf="results.length; else empty"
-      class="fira-text w-4/5 md:w-3/5 lg:w-2/5 rounded-3xl bg-white px-4 py-4 mx-auto flex flex-col gap-4"
+      class="fira-text w-[90vw] md:w-3/5 lg:w-2/5 rounded-3xl bg-white px-4 py-4 mx-auto flex flex-col gap-4"
     >
       <p>სიაში მოიძებნა {{ results.length }} შესაბამისი სოციალური სერვისი.</p>
 
-      <p *ngFor="let ss of results" class="border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in cursor-pointer" (click)="selectSS(ss)">{{ss.benefit}}</p>
+      <p
+        *ngFor="let ss of results"
+        class="border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in cursor-pointer"
+        (click)="selectSS(ss)"
+      >
+        {{ ss.benefit }}
+      </p>
     </div>
 
     <ng-template #empty>
       <div
-        class="fira-text w-4/5 md:w-3/5 lg:w-2/5 rounded-3xl bg-white px-4 py-4 mx-auto"
+        class="fira-text w-[90vw] md:w-3/5 lg:w-2/5 rounded-3xl bg-white px-4 py-4 mx-auto"
       >
         <p>
           სამწუხაროდ სიაში შესაბამისი პარამეტრების დამაკმაყოფილებელი სოციალური
@@ -30,11 +34,15 @@
   </ng-container>
 
   <button
-      class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 my-4 mx-auto"
-      routerLink="../home"
-    >
-      მთავარი გვერდი
-    </button>
+    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 my-4 mx-auto"
+    routerLink="../home"
+  >
+    მთავარი გვერდი
+  </button>
 
-    <app-social-service *ngIf="socialService" (socialServiceRemoved)="unselectSS()" [socialService]="socialService"></app-social-service>
+  <app-social-service
+    *ngIf="socialService"
+    (socialServiceRemoved)="unselectSS()"
+    [socialService]="socialService"
+  ></app-social-service>
 </div>

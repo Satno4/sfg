@@ -2,65 +2,70 @@
   class="geo-capital social-bg w-full h-full text-center pt-20 px-4 flex flex-col gap-6"
 >
   <ng-container *ngIf="cities$ | async as cities">
-    <h2
-      class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
-    >
-      ქალაქი
-    </h2>
     <div
-      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto flex flex-wrap gap-4 justify-center"
+      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
     >
-      <button
-        *ngFor="let city of cities"
-        (click)="cityClicked(city)"
-        [ngClass]="{
-          'border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in': true,
-          selected: chosenCity === city
-        }"
+      <h2
+        class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl px-4 pb-4 mx-auto geo-capital"
       >
-        {{ city }}
-      </button>
+        აირჩიეთ ქალაქი
+      </h2>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <button
+          *ngFor="let city of cities"
+          (click)="cityClicked(city)"
+          [ngClass]="{
+            'border-solid border-2 border-black enabled px-4 rounded-2xl py-1 ease-in': true,
+            selected: chosenCity === city
+          }"
+        >
+          {{ city }}
+        </button>
+      </div>
+      <br />
 
-      <span class="bg-black text-white bg-opacity-60 rounded-3xl p-4"
-        >ამ პროექტის ფარგლებში ძირითადად მოწოდებულია შიდა ქართლსა და კახეთში
+      <div class="text-[#6b7280] rounded-3xl p-4">
+        ამ პროექტის ფარგლებში ძირითადად მოწოდებულია შიდა ქართლსა და კახეთში
         ხელმისაწვდომი სოციალური სერვისები
-      </span>
+      </div>
     </div>
   </ng-container>
   <ng-container *ngIf="categories$ | async as categories">
-    <h2
-      class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl bg-white px-4 py-4 mx-auto"
-    >
-      კატეგორია
-    </h2>
     <div
-      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4"
+      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
     >
-      <span
-        *ngFor="let category of categories"
-        class="flex flex-col text-center items-center justify-start align-center"
+      <h2
+        class="geo-capital w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl px-4 pb-4 mx-auto"
       >
-        <button
-          mat-fab
-          (click)="categoryClicked(category.name)"
-          [ngClass]="{
-            '!text-[#2a8d5c] enabled !bg-white hover:text-white hover:bg-[#2a8d5c] ': true,
-            selected: chosenSocialCategory === category.name
-          }"
+        აირჩიეთ კატეგორია
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <span
+          *ngFor="let category of categories"
+          class="flex flex-col text-center items-center justify-start align-center"
         >
-          <mat-icon svgIcon="icons:{{ category.icon }}"></mat-icon>
-        </button>
-        <h3 class="mt-4">
-          {{ category.name }}
-        </h3>
-      </span>
+          <button
+            mat-fab
+            (click)="categoryClicked(category.name)"
+            [ngClass]="{
+              '!text-[#2a8d5c] enabled !bg-white hover:text-white hover:bg-[#2a8d5c] ': true,
+              selected: chosenSocialCategory === category.name
+            }"
+          >
+            <mat-icon svgIcon="icons:{{ category.icon }}"></mat-icon>
+          </button>
+          <h3 class="mt-4">
+            {{ category.name }}
+          </h3>
+        </span>
+      </div>
     </div>
   </ng-container>
 
   <input
     type="text"
     class="fira-text w-4/5 md:w-3/5 lg:w-2/5 text-xl rounded-3xl bg-white px-12 py-4 mx-auto"
-    placeholder="5 სიმბოლო.."
+    placeholder="ან მოძებნე keyword-ით"
     [attr.disabled]="chosenSocialCategory || chosenCity"
     [formControl]="searchControl"
   />
@@ -79,7 +84,7 @@
 
   <ng-template #disabledButton>
     <button
-      class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto disabled:opacity-75"
+      class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-30 mx-auto disabled:opacity-75"
       matTooltip="აირჩიეთ რეგიონი და კატეგორია ან შეიყვანეთ მინიმუმ 5 ასოიანი საძიებო სიტყვა"
     >
       მოძებნა

@@ -2,7 +2,7 @@
   class="absolute w-full h-full top-0 left-0 bg-black bg-opacity-30 flex justify-center align-center overflow-hidden"
 >
   <div
-    class="my-12 overflow-y-scroll w-[80vw] lg:w-[60vw] rounded-3xl bg-white p-4 relative"
+    class="my-12 overflow-y-scroll w-[90vw] lg:w-[60vw] rounded-3xl bg-white p-4 relative"
   >
     <button
       mat-icon-button
@@ -16,13 +16,13 @@
       {{ socialService?.serviceName }}
     </h1>
 
-    <p class="fira-text mt-2 text-left">
+    <p class="fira-text mt-4 text-left">
       <b>სერვისის მოკლე აღწერა: </b>{{ socialService?.benefit }}
     </p>
-    <p class="fira-text mt-2 text-left">
+    <p class="fira-text mt-4 text-left">
       <b>კატეგორია: </b>{{ socialService?.serviceCategory }}
     </p>
-    <p class="fira-text mt-2 text-left">
+    <p class="fira-text mt-4 text-left">
       <b>ბენეფიციარი: </b
       ><span *ngIf="socialService?.ageRestriction"
         >{{ socialService?.ageRestriction?.min }}-დან
@@ -30,46 +30,46 @@
       >
       {{ socialService?.beneficiary }}
     </p>
-    <p class="fira-text mt-2 text-left">
+    <p class="fira-text mt-4 text-left">
       <b>ლოკაცია: </b>{{ socialService?.location }}, {{ socialService?.region }}
     </p>
-    <p class="fira-text mt-2 text-left">
+    <p class="fira-text mt-4 text-left">
       <b>მომწოდებელი: </b>
       <a [href]="socialService?.link" class="text-[#2A8D5C]" target="_blank">{{
         socialService?.provider
       }}</a>
     </p>
-    <div class="fira-text mt-2 text-left">
+    <div class="fira-text mt-4 text-left">
       <b>მომწოდებლის საკონტაქტო ინფორმაცია: </b>
-      <ol>
+      <ul>
         <li *ngIf="socialService?.phone">
-          <mat-icon class="relative top-2">phone</mat-icon>
+          <mat-icon class="relative top-2 mr-4">phone</mat-icon>
           {{ socialService?.phone }}
         </li>
         <li *ngIf="socialService?.address">
-          <mat-icon class="relative top-2">location_on</mat-icon>
+          <mat-icon class="relative top-2 mr-4">location_on</mat-icon>
           {{ socialService?.address }}
         </li>
         <li *ngIf="socialService?.email">
-          <mat-icon class="relative top-2">mail_outline</mat-icon>
+          <mat-icon class="relative top-2 mr-4">mail_outline</mat-icon>
           {{ socialService?.email }}
         </li>
-      </ol>
+      </ul>
     </div>
 
-    <div class="fira-text mt-2 text-left">
+    <div class="fira-text mt-4 text-left">
       <b>სერვისის მისაღებად წარსადგენი დოკუმენტაცია: </b>
 
-      <ol>
+      <ol class="list-decimal ml-4">
         <li *ngFor="let doc of socialService?.documentation">{{ doc }};</li>
       </ol>
     </div>
 
-    <p class="fira-text mt-2 text-left">
+    <p class="fira-text mt-4 text-left">
       <b>სერვისის სრული აღწერა: </b>{{ socialService?.serviceDescription }}
     </p>
 
-    <p class="fira-text mt-2 text-left">
+    <p class="fira-text my-4 text-left">
       <b>
         აღნიშნულ პროგრამებზე კონსულტაციის მისაღებად, შეავსეთ
         <a
