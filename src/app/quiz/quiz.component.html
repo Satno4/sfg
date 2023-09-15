@@ -4,9 +4,9 @@
   <ng-container *ngIf="quizState === quizStateEnum.CITY">
     <ng-container *ngIf="cities$ | async as cities">
       <div
-        class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
+        class="fira-text w-[90vw] md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-        <h2 class="geo-capital text-3xl rounded-3xl bg-white px-4 py-4 mx-auto">
+        <h2 class="geo-capital text-3xl rounded-3xl bg-white py-4 mx-auto">
           მუნიციპალიტეტი
         </h2>
         <div class="text-black bg-opacity-60 rounded-3xl p-4 mx-auto">
@@ -31,9 +31,9 @@
   <ng-container *ngIf="quizState === quizStateEnum.STATUS">
     <ng-container *ngIf="statuses$ | async as statuses">
       <div
-        class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
+        class="fira-text w-[90vw] md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-        <h2 class="geo-capital text-3xl rounded-3xl bg-white px-4 py-4 mx-auto">
+        <h2 class="geo-capital text-3xl rounded-3xl bg-white py-4 mx-auto">
           ბენეფიციარის სტატუსი
         </h2>
 
@@ -59,9 +59,9 @@
   <ng-container *ngIf="quizState === quizStateEnum.FAMILY">
     <ng-container *ngIf="familyRequirements$ | async as familyRequirements">
       <div
-        class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
+        class="fira-text w-[90vw] md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-        <h2 class="geo-capital text-3xl rounded-3xl bg-white px-4 py-4 mx-auto">
+        <h2 class="geo-capital text-3xl rounded-3xl bg-white py-4 mx-auto">
           ბენეფიციარის ოჯახის სტატუსი
         </h2>
 
@@ -87,9 +87,9 @@
   <ng-container *ngIf="quizState === quizStateEnum.PARENTS">
     <ng-container *ngIf="parentRequirements$ | async as parentRequirements">
       <div
-        class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
+        class="fira-text w-[90vw] md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-        <h2 class="geo-capital text-3xl bg-white px-4 py-4 mx-auto">
+        <h2 class="geo-capital text-3xl bg-white py-4 mx-auto">
           ბენეფიციარის მშობლის სტატუსი
         </h2>
 
@@ -115,9 +115,9 @@
   <ng-container *ngIf="quizState === quizStateEnum.HEALTH">
     <ng-container *ngIf="healthRequirements$ | async as healthRequirements">
       <div
-        class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
+        class="fira-text w-[90vw] md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
       >
-        <h2 class="geo-capital text-3xl rounded-3xl bg-white px-4 py-4 mx-auto">
+        <h2 class="geo-capital text-3xl rounded-3xl bg-white py-4 mx-auto">
           ბენეფიციარის ჯანმრთელობის მდგომარეობა
         </h2>
 
@@ -141,7 +141,7 @@
     </ng-container>
   </ng-container>
 
-  <div class="w-4/5 md:w-3/5 lg:w-2/5 mx-auto flex justify-between">
+  <div class="w-[90vw] md:w-3/5 lg:w-2/5 mx-auto flex justify-between">
     <button
       *ngIf="backButtonEnabled; else disabledBackButton"
       class="bg-[#FF8573] enabled-pink rounded-3xl text-3xl text-white bg-opacity-80 w-2/12"
@@ -192,7 +192,7 @@
   </div>
 
   <button
-    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto mb-8"
+    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-[90vw] md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto mb-8"
     routerLink="../home"
   >
     მთავარი გვერდი

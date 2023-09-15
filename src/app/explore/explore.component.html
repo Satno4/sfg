@@ -3,11 +3,9 @@
 >
   <ng-container *ngIf="cities$ | async as cities">
     <div
-      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
+      class="fira-text w-[90vw] md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
     >
-      <h2
-        class="w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl px-4 pb-4 mx-auto geo-capital"
-      >
+      <h2 class="text-3xl rounded-3xl px-4 pb-4 mx-auto geo-capital">
         აირჩიეთ ქალაქი
       </h2>
       <div class="flex flex-wrap gap-4 justify-center">
@@ -32,11 +30,9 @@
   </ng-container>
   <ng-container *ngIf="categories$ | async as categories">
     <div
-      class="fira-text w-4/5 md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
+      class="fira-text w-[90vw] md:w-3/5 text-md rounded-3xl bg-white px-4 py-4 mx-auto"
     >
-      <h2
-        class="geo-capital w-4/5 md:w-3/5 lg:w-2/5 text-3xl rounded-3xl px-4 pb-4 mx-auto"
-      >
+      <h2 class="geo-capital text-3xl rounded-3xl px-4 pb-4 mx-auto">
         აირჩიეთ კატეგორია
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -64,14 +60,14 @@
 
   <input
     type="text"
-    class="fira-text w-4/5 md:w-3/5 lg:w-2/5 text-xl rounded-3xl bg-white px-12 py-4 mx-auto"
+    class="fira-text w-[90vw] md:w-3/5 lg:w-2/5 text-xl rounded-3xl bg-white px-12 py-4 mx-auto"
     placeholder="ან მოძებნე keyword-ით"
     [attr.disabled]="chosenSocialCategory || chosenCity"
     [formControl]="searchControl"
   />
 
   <button
-    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
+    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-[90vw] md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto"
     (click)="searchClicked()"
     *ngIf="
       (searchControl.value && searchControl.value.length > 4) ||
@@ -84,14 +80,14 @@
 
   <ng-template #disabledButton>
     <button
-      class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-30 mx-auto disabled:opacity-75"
+      class="bg-black rounded-3xl text-3xl py-4 px-8 text-white w-[90vw] md:w-3/5 lg:w-2/5 bg-opacity-30 mx-auto disabled:opacity-75"
       matTooltip="აირჩიეთ რეგიონი და კატეგორია ან შეიყვანეთ მინიმუმ 5 ასოიანი საძიებო სიტყვა"
     >
       მოძებნა
     </button>
   </ng-template>
   <button
-    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-4/5 md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto mb-8"
+    class="bg-[#2A8D5C] enabled rounded-3xl text-3xl py-4 px-8 text-white w-[90vw] md:w-3/5 lg:w-2/5 bg-opacity-80 mx-auto mb-8"
     routerLink="../home"
   >
     მთავარი გვერდი
